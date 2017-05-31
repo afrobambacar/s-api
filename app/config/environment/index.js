@@ -48,10 +48,10 @@ let all = {
   },
 
   aws: {
-    accessKeyId: 'AKIAJFFLUR5QFMQQ7CYQ',
-    secretAccessKey: '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',
-    region: 'ap-northeast-2',
-    s3Bucket: 'static.wouzoo.com'
+    accessKeyId: '',
+    secretAccessKey: '',
+    region: '',
+    s3Bucket: ''
   }
 };
 
