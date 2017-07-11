@@ -13,11 +13,11 @@ const CommentSchema = new Schema({
 });
 
 CommentSchema
-	.virtual('withProfile')
-	.get(function () {
-		return _.defaults({
-			from: this.from.profile
-		}, this._doc);
-	});
+  .virtual('withProfile')
+  .get(function () {
+    return _.defaults({
+      from: this.from.profile
+    }, this._doc);
+  });
 
 module.exports = mongoose.model('Comment', CommentSchema);
