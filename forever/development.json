@@ -1,7 +1,7 @@
 {
-    "uid": "wouzoo-api",
-    "append": true,
-    "watch": true,
-    "script": "app/app.js",
-    "sourceDir": "/Users/afr5/dev/wouzoo/api/"
+  "uid": "wouzoo-api",
+  "append": true,
+  "watch": true,
+  "script": "app/app.js",
+  "sourceDir": "/Users/afr5/dev/wouzoo/api/"
 }
