@@ -13,10 +13,6 @@ const _ = require('lodash');
  * - name (string): required
  * - email (string): required
  * - password (string): required
- * - emailNotify (boolean): optional
- * - smsNotify (boolean): optional
- * - role (string): optional - user | pro
- * - phone (string): optional
  */
 exports.create = function (req, res, next) {
   let newUser = new User(req.body);

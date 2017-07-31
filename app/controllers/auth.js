@@ -69,10 +69,7 @@ exports.isAuthenticated = function () {
         });
       }
 
-      // 여기까지는 안오는데?
-      console.log('check_point_1');
       User.findById(req.user._id, function (err, user) {
-        console.log('check_point_2');
         if (err) return next(err);
         if (!user) return res.status(401).send('Unauthorized');
 

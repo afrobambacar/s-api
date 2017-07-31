@@ -24,7 +24,7 @@ module.exports = function (app) {
   // app.get('/users/profile/:id', users.profile);
   // app.post('/users/profile_image/update', auth.isAuthenticated(), users.updateProfileImage);
   // app.post('/users/me/destroy', auth.isAuthenticated(), users.destroy);
-
+  
   app.get('/', function (req, res) {
     res.status(200).json({
       status: 'success',
