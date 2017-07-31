@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/wouzoo-dev',
+    uri: 'mongodb://localhost/api-dev',
     port: 9090
   }
 };
