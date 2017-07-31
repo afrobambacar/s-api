@@ -1,7 +1,0 @@
-{
-  "uid": "wouzoo-api",
-  "append": true,
-  "watch": false,
-  "script": "app/app.js",
-  "sourceDir": "/home/ubuntu/wouzoo/api/"
-}
