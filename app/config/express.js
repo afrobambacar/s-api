@@ -1,22 +1,17 @@
-/**
- * Express configuration
- */
-
 'use strict';
 
-var express = require('express');
 var morgan = require('morgan');
 var compression = require('compression');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
-var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
 
 module.exports = function(app) {
   var env = app.get('env');
+  
   app.set('tmp', config.root + '/tmp');
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'pug');
@@ -29,6 +24,7 @@ module.exports = function(app) {
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
+  
   if ('production' === env) {
     app.use(morgan('dev'));
   }

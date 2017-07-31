@@ -13,16 +13,11 @@ const UserSchema = new Schema({
   email: { type: String, lowercase: true, default: '' },
   profile_image: { type: String, default: null },
   bio: { type: String, default: '' },
-  phone: { type: String, default: '' },
-  // user || pro || admin
   role: { type: String, default: 'user' },
   password: String,
-  // local || facebook || kakao
   provider: String,
   salt: String,
   facebook: {},
-  agreements: [],
-  notify: [],
   created_at: { type : Date, default : Date.now }
 });
 
