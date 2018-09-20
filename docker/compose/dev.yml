@@ -24,7 +24,6 @@ services:
     image: mongo:3-jessie
     container_name: mongo
     command: mongod --smallfiles --logpath=/dev/null # --quiet
-    command: mongod
     ports:
       - "27017:27017"
 

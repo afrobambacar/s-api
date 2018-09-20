@@ -130,7 +130,7 @@ gulp.task('nodemon', () => {
   _nodemon = nodemon({
     script: `${paths.tmp}/index.js`,
     // watch: `${paths.tmp}/`,
-    exec: 'DEBUG=SS:*,iamporter* node',
+    // exec: 'DEBUG=SS:*,iamporter* node',
     // ,sequelize:* 'node --inspect=0.0.0.0:9229',
     ext: 'js',
     verbose: true,

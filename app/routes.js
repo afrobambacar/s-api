@@ -1,10 +1,8 @@
-'use strict';
+// import auth from 'controllers/auth';
+// import accounts from 'controllers/accounts';
+// import users from 'controllers/users';
 
-const auth = require('./controllers/auth');
-const accounts = require('./controllers/accounts');
-const users = require('./controllers/users');
-
-module.exports = function (app) {
+module.exports = (app) => {
 
   /* auth */
   // app.post('/auth/local', auth.serializeUser, auth.serializeClient, auth.generateAccessToken, auth.generateRefreshToken, auth.respondAuth);
@@ -25,7 +23,7 @@ module.exports = function (app) {
   // app.post('/users/profile_image/update', auth.isAuthenticated(), users.updateProfileImage);
   // app.post('/users/me/destroy', auth.isAuthenticated(), users.destroy);
   
-  app.get('/', function (req, res) {
+  app.get('/', (req, res) => {
     res.status(200).json({
       status: 'success',
       data: {
