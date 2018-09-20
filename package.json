@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "author": "Jaecheol Lee <jclee.dev@gmail.com> (https://afrobambacar.github.io)",
   "main": "app/app.js",
-  "scripts": {},
+  "scripts": {
+    "start": "gulp serve"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/afrobambacar/s-api.git"
@@ -28,9 +30,7 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pug": "^2.0.3",
-    "s3-uploader": "^2.0.3",
-    "sendmail": "^1.4.1",
-    "sharp": "^0.20.8"
+    "s3-uploader": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -54,6 +54,7 @@
     "gulp-plumber": "^1.2.0",
     "gulp-watch": "^5.0.1",
     "mocha": "^5.2.0",
+    "prettier": "^1.14.3",
     "run-sequence": "^2.2.1",
     "through2": "^2.0.3"
   },

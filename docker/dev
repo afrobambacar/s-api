@@ -1,7 +1,7 @@
 FROM node:carbon-alpine
 
 ENV HOME=/home/app
-ENV APP_DIR=$HOME/web
+ENV APP_DIR=$HOME/api
 
 COPY dist $APP_DIR/
 COPY package.json $APP_DIR/
@@ -12,9 +12,11 @@ RUN adduser -s /bin/false app -D app \
  && chown -R app:app $HOME/* 
 
 RUN apk update \
+  && apk add vips-dev fftw-dev --update-cache --repository https://dl-3.alpinelinux.org/alpine/edge/testing/ \
   && apk add nginx openrc tzdata curl bash --no-cache \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log
 
 RUN npm i -g gulp-cli \
   && npm i
+  

@@ -1,21 +1,33 @@
 version: "3"
 services:
-  web:
-    image: web:dev
-    container_name: web
+  api:
+    image: api:dev
+    container_name: api
     command: bash -c "npm start"
     volumes:
-      - ../../app:/home/app/web/app
-      - ../../package.json:/home/app/web/package.json
-      - ../../gulpfile.js:/home/app/web/gulpfile.js
-      - ../../gulp:/home/app/web/gulp
-      - /home/app/web/.tmp
+      - ../../app:/home/app/api/app
+      - ../../package.json:/home/app/api/package.json
+      - ../../gulpfile.js:/home/app/api/gulpfile.js
+      - ../../.babelrc:/home/app/api/.babelrc
+      - ../../.eslintrc:/home/app/api/.eslintrc
+      - ../../.eslintignore:/home/app/api/.eslintignore
+      - /home/app/api/.tmp
     ports:
-      - "9000:9000"
-      - "3000:3000" 
-      - "3001:3001" 
+      - "9090:9090"
     environment:
       NODE_ENV: development
-      PORT: 9000
+      PORT: 9090
       TZ: Asia/Seoul
     tty: true
+
+  db: 
+    image: mongo:3-jessie
+    container_name: mongo
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    command: mongod
+    ports:
+      - "27017:27017"
+
+#    environment:
+#      MONGODB_USER="user" 
+#      MONGODB_PASS="pass"
