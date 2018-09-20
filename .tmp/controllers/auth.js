@@ -1,6 +1,6 @@
 'use strict';
 
-import { compose } from 'compose-middleware';
+var _composeMiddleware = require('compose-middleware');
 
 const config = require('../config/environment');
 const crypto = require('crypto');
@@ -8,10 +8,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
-const validateJwt = expressJwt({  
+const validateJwt = expressJwt({
   secret: config.secrets.session,
   requestProperty: 'user'
-  // credentialsRequired: false 
 });
 const $ = require('../utils');
 const User = require('../models/user');
@@ -19,78 +18,45 @@ const Token = require('../models/token');
 const TOKENTIME = 60 * 60 * 2;
 
 passport.use(new LocalStrategy({
-      usernameField: 'email',
-      passwordField: 'password'
-    },
-    function (email, password, done) {
-      let promise = User.findOne({ email: email.toLowerCase() }).exec();
+  usernameField: 'email',
+  passwordField: 'password'
+}, function (email, password, done) {
+  let promise = User.findOne({ email: email.toLowerCase() }).exec();
 
-      promise.then(function (user) {
-        if (!user) {
-          return done(null, false, { 
-            status: 'error', 
-            message: 'This email is not registered.' 
-          }); 
-        }
+  promise.then(function (user) {
+    if (!user) {
+      return done(null, false, {
+        status: 'error',
+        message: 'This email is not registered.'
+      });
+    }
 
-        if (!user.authenticate(password)) {
-          return done(null, false, { 
-            status: 'error',
-            message: 'This password is not correct.' 
-          });
-        }
+    if (!user.authenticate(password)) {
+      return done(null, false, {
+        status: 'error',
+        message: 'This password is not correct.'
+      });
+    }
 
-        return done(null, user);
-      })
-      .catch(new Error('invalid user'));
-    }));
+    return done(null, user);
+  })['catch'](new Error('invalid user'));
+}));
 
-
-function signToken (id, clientId) {
-  return jwt.sign({ 
+function signToken(id, clientId) {
+  return jwt.sign({
     _id: id,
-    clientId: clientId 
-  }, config.secrets.session, { 
+    clientId: clientId
+  }, config.secrets.session, {
     expiresIn: TOKENTIME
   });
 }
 
-// exports.isAuthenticated = function () {
-//   return compose([
-//     (req, res, next) => {
-//       return validateJwt(req, res, next);
-//     },
-//     (error, req, res, next) => {
-//       if (err.name === 'UnauthorizedError') {
-//         return res.status(err.status).json({
-//           status: 'error',
-//           data: err
-//         });
-//       }
-
-//       User.findById(req.user._id, function (err, user) {
-//         if (err) return next(err);
-//         if (!user) return res.status(401).send('Unauthorized');
-
-//         req.user = user;
-//         next();
-//       });
-//     }
-//   ])();
-// }
-
-/**
- * POST /account/login/facebook
- * - id (string): required
- * - name (string): required
- * - email (string): required
- */
 exports.facebook = function (req, res, next) {
   let id = req.body.id || '';
   let name = req.body.name;
   let email = req.body.email;
   let promise = User.findOne({ 'facebook.id': id }).exec();
-  
+
   promise.then(function (user) {
     if (!user) {
       user = new User({
@@ -109,8 +75,7 @@ exports.facebook = function (req, res, next) {
   }).then(function (user) {
     req.user = user || {};
     next();
-  })
-  .catch($.handleError(res));
+  })['catch']($.handleError(res));
 };
 
 exports.serializeUser = function (req, res, next) {
@@ -128,17 +93,12 @@ exports.serializeUser = function (req, res, next) {
 
 exports.serializeClient = function (req, res, next) {
   let token = new Token({ user: req.user._id });
-  token.save()
-    .then(function (client) {
-      req.user.client_id = client._id;
-      next();
-    })
-    .catch($.handleError(res));
+  token.save().then(function (client) {
+    req.user.client_id = client._id;
+    next();
+  })['catch']($.handleError(res));
 };
 
-/**
- * refresh_token required
- */
 exports.validateRefreshToken = function (req, res, next) {
   if (!req.body.refresh_token) {
     return next(new Error('invalid token'));
@@ -150,8 +110,7 @@ exports.validateRefreshToken = function (req, res, next) {
     req.user._id = client.user;
     req.user.client_id = client._id;
     next();
-  })
-  .catch($.handleError(res));
+  })['catch']($.handleError(res));
 };
 
 exports.generateAccessToken = function (req, res, next) {
@@ -167,19 +126,14 @@ exports.generateRefreshToken = function (req, res, next) {
   Token.findByIdAndUpdate(req.user.client_id, {
     refresh_token: refreshToken
   }, {
-    new: true
+    'new': true
   }, function (err, data) {
     if (err) res.status(500).json(err);
     req.token.refresh_token = data.refresh_token;
-    next();   
+    next();
   });
 };
 
-/**
- * POST /auth/reject
- * 
- * - refresh_token required
- */
 exports.rejectToken = function (req, res, next) {
   Token.remove({
     refresh_token: req.body.refresh_token

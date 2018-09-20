@@ -1,0 +1,4 @@
+{
+  "presets": [["airbnb", {"targets": {"node": "current"}}]],
+  "comments": false
+}

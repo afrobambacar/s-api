@@ -10,6 +10,7 @@
     "url": "https://github.com/afrobambacar/s-api.git"
   },
   "dependencies": {
+    "app-module-path": "^2.2.0",
     "aws-sdk": "^2.318.0",
     "body-parser": "^1.18.3",
     "compose-middleware": "^5.0.0",
@@ -31,7 +32,31 @@
     "sendmail": "^1.4.1",
     "sharp": "^0.20.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-airbnb": "^2.6.0",
+    "babel-register": "^6.26.0",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-lodash-fp": "^2.2.0-a1",
+    "eslint-plugin-mocha": "^5.2.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-copy": "^1.1.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-mocha": "^6.0.0",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-plumber": "^1.2.0",
+    "gulp-watch": "^5.0.1",
+    "mocha": "^5.2.0",
+    "run-sequence": "^2.2.1",
+    "through2": "^2.0.3"
+  },
   "engines": {
     "node": ">=8.11"
   },
