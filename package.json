@@ -10,31 +10,30 @@
     "url": "https://github.com/afrobambacar/s-api.git"
   },
   "dependencies": {
-    "aws-sdk": "^2.92.0",
-    "body-parser": "^1.17.2",
-    "composable-middleware": "^0.3.0",
-    "compression": "^1.7.0",
+    "aws-sdk": "^2.318.0",
+    "body-parser": "^1.18.3",
+    "compose-middleware": "^5.0.0",
+    "compression": "^1.7.3",
     "cookie-parser": "~1.4.3",
     "errorhandler": "~1.5.0",
-    "express": "^4.15.3",
-    "express-jwt": "^5.3.0",
-    "express-session": "~1.15.4",
-    "jsonwebtoken": "^7.4.1",
-    "lodash": "^4.17.4",
-    "method-override": "^2.3.9",
-    "mongoose": "^4.11.5",
-    "morgan": "^1.8.2",
-    "passport": "^0.3.2",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.2.16",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.0-beta6",
-    "s3-uploader": "^2.0.2",
-    "sendmail": "^1.1.1",
-    "sharp": "^0.18.2"
+    "pug": "^2.0.3",
+    "s3-uploader": "^2.0.3",
+    "sendmail": "^1.4.1",
+    "sharp": "^0.20.8"
   },
   "devDependencies": {},
   "engines": {
-    "node": ">=4.4.2"
+    "node": ">=8.11"
   },
   "private": true
 }
