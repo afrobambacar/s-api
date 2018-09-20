@@ -1,0 +1,21 @@
+version: "3"
+services:
+  web:
+    image: web:dev
+    container_name: web
+    command: bash -c "npm start"
+    volumes:
+      - ../../app:/home/app/web/app
+      - ../../package.json:/home/app/web/package.json
+      - ../../gulpfile.js:/home/app/web/gulpfile.js
+      - ../../gulp:/home/app/web/gulp
+      - /home/app/web/.tmp
+    ports:
+      - "9000:9000"
+      - "3000:3000" 
+      - "3001:3001" 
+    environment:
+      NODE_ENV: development
+      PORT: 9000
+      TZ: Asia/Seoul
+    tty: true
