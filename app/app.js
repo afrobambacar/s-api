@@ -1,13 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import http from 'http';
-import config from 'config/environment';
+import * as config from 'config';
+import routes from 'routes';
 // mongoose.Promise = global.Promise;
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 // Connect to database
-mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.connect(config.env.mongo.uri, config.env.mongo.options);
 mongoose.connection.on('open', () => console.log('MongoDB connected'));
 mongoose.connection.on('error', (err) => {
   console.error(`MongoDB connection error: ${err}`);
@@ -18,11 +17,11 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 const server = http.createServer(app);
 
-require('./config/express')(app);
-require('./routes')(app);
+config.express(app);
+routes.set(app);
 
 // Start server
-server.listen(config.port, config.ip, () => {
+server.listen(config.env.port, config.env.ip, () => {
   console.log(`Express server listening on ${config.port}, in ${app.get('env')} mode`);
 });
 
