@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import validator from 'validator'
 
 const EmailSchema = new Schema({
   email: {
@@ -11,8 +12,7 @@ const EmailSchema = new Schema({
 EmailSchema
   .path('email')
   .validate((email) => {
-    const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    return emailRegex.test(email.text); // Assuming email has a text attribute
+    return validator.isEmail(email)
   }, 'the email validation was failed')
 
 const Email = mongoose.model('Email', EmailSchema);

@@ -46,7 +46,6 @@ describe('API Test /email', () => {
       .expect(200)
       .end((err, res) => {
         if (err) return done()
-        console.log('... ', res.body)
         const { status } = res.body
         status.should.equal('success')
         done()
