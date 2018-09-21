@@ -12,5 +12,5 @@ if (env === 'development' || env === 'test') {
 }
 
 // Export the application
-export default { app };
+export default app;
 // exports = module.exports = require('./app');

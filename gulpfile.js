@@ -43,6 +43,7 @@ const mochaOptions = {
   require: ['babel-register', 'babel-polyfill', 'test/mocha.conf.js'],
   checkLeaks: true,
   timeout: 50000, // set default mocha spec timeout
+  exit: true,
 };
 
 let _nodemon;
@@ -116,14 +117,14 @@ gulp.task('mochaTest:model-unit', () =>
   gulp
     .src(['test/**/*.model.spec.js'], { read: false })
     .pipe(mocha(mochaOptions))
-    .on('error', handleError),
+    .on('error', handleError)
 );
 
-gulp.task('mochaTest:integration', () =>
+gulp.task('mochaTest', () =>
   gulp
-    .src(['test/**/*.integration.spec.js'], { read: false })
+    .src(['test/**/*.spec.js'], { read: false })
     .pipe(mocha(mochaOptions))
-    .on('error', handleError),
+    .on('error', handleError)
 );
 
 gulp.task('nodemon', () => {
@@ -145,7 +146,7 @@ gulp.task('serve', cb => {
 });
 
 gulp.task('test', cb => {
-  runSequence('env:test', 'mochaTest:model-unit', 'mochaTest:integration', cb);
+  runSequence('env:test', 'mochaTest', cb);
 });
 
 gulp.task('build', cb => {

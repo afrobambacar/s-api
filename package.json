@@ -5,7 +5,8 @@
   "author": "Jaecheol Lee <jclee.dev@gmail.com> (https://afrobambacar.github.io)",
   "main": "app/app.js",
   "scripts": {
-    "start": "gulp serve"
+    "start": "gulp serve",
+    "test": "mocha --compilers js:babel-core/register ./test/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -31,13 +32,15 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pug": "^2.0.3",
-    "s3-uploader": "^2.0.3"
+    "s3-uploader": "^2.0.3",
+    "validator": "^10.7.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
     "babel-preset-airbnb": "^2.6.0",
     "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "eslint": "^5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.0.1",
@@ -57,6 +60,7 @@
     "mocha": "^5.2.0",
     "prettier": "^1.14.3",
     "run-sequence": "^2.2.1",
+    "supertest": "^3.3.0",
     "through2": "^2.0.3"
   },
   "engines": {
