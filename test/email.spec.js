@@ -2,7 +2,7 @@ import request from 'supertest'
 import app from 'app'
 
 describe('API Test /email', () => {
-  before('POST /email, seed data as a@a.com', done => {
+  before('POST /email, insert seed data as a@a.com', done => {
     request(app)
       .post('/email')
       .send({ email: 'a@a.com'})
@@ -60,7 +60,8 @@ describe('API Test /email', () => {
       .end((err, res) => {
         if (err) return done()
         const { data } = res.body
-        data.isExist.should.equal(true)
+        data.should.have.property('isNew').equal(false)
+        done()
       })
   })
 })

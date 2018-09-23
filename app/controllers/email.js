@@ -2,10 +2,21 @@ import Email from 'models/email'
 
 function create (req, res) {
   const { email } = req.body
-  const model = new Email({ email });
-  
-  model.save()
-    .then(_email => res.jsend.success({ email: _email }))
+  const options = {
+    upsert: true,
+    new: true,
+    runValidators: true,
+    setDefaultsOnInsert: true,
+    rawResult: true
+  }
+
+  Email.findOneAndUpdate({ email }, { email }, options)
+    .then(raw => {
+      const isNew = raw.lastErrorObject.updatedExisting
+
+      raw.value.set('isNew', !isNew, { strict: false })
+      res.jsend.success(raw.value);
+    })
     .catch(err => res.jsend.fail(err))
 }
 

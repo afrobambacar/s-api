@@ -42,7 +42,7 @@ const mochaOptions = {
   reporter: 'spec',
   require: ['babel-register', 'babel-polyfill', 'test/mocha.conf.js'],
   checkLeaks: true,
-  timeout: 50000, // set default mocha spec timeout
+  timeout: 5000, // set default mocha spec timeout
   exit: true,
 };
 

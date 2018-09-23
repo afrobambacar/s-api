@@ -6,7 +6,7 @@
   "main": "app/app.js",
   "scripts": {
     "start": "gulp serve",
-    "test": "mocha --compilers js:babel-core/register ./test/**/*.test.js"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
