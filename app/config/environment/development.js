@@ -3,7 +3,7 @@ module.exports = {
   // Type below command.
   // `docker inspect --format="{{.NetworkSettings.Networks.compose_default.IPAddress}}" mongo`
   mongo: {
-    uri: 'mongodb://172.21.0.3:27017/api-dev',
+    uri: 'mongodb://172.21.0.2:27017/api-dev',
     options: {
       useNewUrlParser: true,
       autoIndex: false, // Don't build indexes

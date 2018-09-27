@@ -40,7 +40,7 @@ const envs = {
 
 const mochaOptions = {
   reporter: 'spec',
-  require: ['babel-register', 'babel-polyfill', 'test/mocha.conf.js'],
+  require: ['babel-register', 'babel-polyfill', './mocha.conf.js'],
   checkLeaks: true,
   timeout: 5000, // set default mocha spec timeout
   exit: true,
@@ -122,7 +122,7 @@ gulp.task('mochaTest:model-unit', () =>
 
 gulp.task('mochaTest', () =>
   gulp
-    .src(['test/**/*.spec.js', 'app/api/**/*.spec.js'], { read: false })
+    .src(['app/**/*.test.js'], { read: false })
     .pipe(mocha(mochaOptions))
     .on('error', handleError)
 );

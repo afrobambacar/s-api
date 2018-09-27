@@ -1,4 +1,5 @@
-import path from 'path';
+import path from 'path'
+import merge from 'lodash/merge'
 
 const all = {
   env: process.env.NODE_ENV || 'development',
@@ -12,6 +13,7 @@ const all = {
   // Server IP
   ip: process.env.IP || '0.0.0.0',
 
+  apiRoot: process.env.API_ROOT || '',
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
     session: 'secret',
@@ -48,7 +50,5 @@ const all = {
   },
 };
 
-export default {
-  ...all,
-  ...(require(`./${process.env.NODE_ENV}.js`) || {}),
-};
+module.exports = merge(all, (require(`./${process.env.NODE_ENV}.js`) || {})
+export default module.exports

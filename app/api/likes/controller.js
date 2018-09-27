@@ -1,4 +1,4 @@
-import Like from 'models/like'
+import Like from './model'
 
 function create (req, res) {
   const { uuid } = req.body
@@ -16,7 +16,7 @@ function count (req, res) {
   })
 }
 
-export default {
+export {
   create,
-  count,
+  count
 }

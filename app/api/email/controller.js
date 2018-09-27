@@ -1,4 +1,4 @@
-import Email from 'models/email'
+import Email from './model'
 
 function create (req, res) {
   const { email } = req.body
@@ -20,6 +20,6 @@ function create (req, res) {
     .catch(err => res.jsend.fail(err))
 }
 
-export default {
+export {
   create
 }
