@@ -1,24 +1,21 @@
-'use strict';
+import mongoose, { Shcema } from 'mongoose'
+import _ from 'lodash'
+import crypto from 'crypto'
+import { env } from 'config'
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const _ = require('lodash');
-const crypto = require('crypto');
-const config = require('../config/environment');
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
-mongoose.Promise = global.Promise;
 
 const UserSchema = new Schema({
   name: { type: String, default: '' },
   email: { type: String, lowercase: true, default: '' },
-  profile_image: { type: String, default: null },
+  profileImage: { type: String, default: null },
   bio: { type: String, default: '' },
   role: { type: String, default: 'user' },
   password: String,
   provider: String,
   salt: String,
   facebook: {},
-  created_at: { type : Date, default : Date.now }
+  created: { type : Date, default : Date.now }
 });
 
 /**
@@ -152,7 +149,7 @@ UserSchema
  */
 UserSchema.methods = {
   getProfileImageUrls () {
-    let host = '//' + config.aws.s3Bucket;
+    let host = '//' + env.aws.s3Bucket;
     let path = '/images/profile';
     let basePath = host + path;
     let images = [];

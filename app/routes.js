@@ -1,24 +1,22 @@
 import errorHandler from 'errorhandler'
 import { Router } from 'express'
-
+import api from 'api'
 import email from 'controllers/email'
 import likes from 'controllers/likes'
-import kitty from 'controllers/kitty'
+
 
 export default {
   set: app => {
+    app.use(api)
+    
     const router = Router({})
 
-    /* email */
+    /* email for landing */
     router.post('/email', email.create)
 
-    /* likes */
+    /* likes for landing */
     router.post('/likes', likes.create)
     router.get('/likes/count', likes.count)
-
-    /* kitty test */
-    router.post('/kitty', kitty.createKitty)
-    router.get('/kitty/:id', kitty.getKitty)
 
     router.get('/', (req, res) => {
       res.jsend.success({ hello: 'world' })

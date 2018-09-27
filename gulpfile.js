@@ -122,7 +122,7 @@ gulp.task('mochaTest:model-unit', () =>
 
 gulp.task('mochaTest', () =>
   gulp
-    .src(['test/**/*.spec.js'], { read: false })
+    .src(['test/**/*.spec.js', 'app/api/**/*.spec.js'], { read: false })
     .pipe(mocha(mochaOptions))
     .on('error', handleError)
 );
