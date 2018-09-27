@@ -1,12 +1,13 @@
 import express from 'express'
-
+import cors from 'cors'
 import compression from 'compression'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
-import methodOverride from 'method-override'
 import cookieParser from 'cookie-parser'
 import jsend from 'jsend'
 import { env } from 'config'
+import { errorHandler as queryErrorHandler } from 'querymen'
+import { errorHandler as bodyErrorHandler } from 'bodymen'
 import errorHandler from 'errorhandler'
 
 export default (apiRoot, routes) => {
@@ -18,19 +19,18 @@ export default (apiRoot, routes) => {
 
   /* istanbul ignore next */
   if (env === 'production' || env === 'development') {
-    // app.use(cors())
+    app.use(cors())
     app.use(compression())
     app.use(morgan('dev'))
   }
 
   app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
   app.use(bodyParser.json({limit: '50mb'}));
-  app.use(methodOverride());
   app.use(cookieParser());
   app.use(jsend.middleware);
   app.use(apiRoot, routes)
-  // app.use(queryErrorHandler())
-  // app.use(bodyErrorHandler())
+  app.use(queryErrorHandler())
+  app.use(bodyErrorHandler())
   app.use(errorHandler)
 
   return app

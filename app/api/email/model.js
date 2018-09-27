@@ -5,9 +5,9 @@ const EmailSchema = new Schema({
   email: {
     type: String,
     required: [true, 'email is required']
-  }, {
-    timestamps: true
   }
+}, {
+  timestamps: true
 })
 
 EmailSchema

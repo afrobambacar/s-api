@@ -1,12 +1,7 @@
-function create (req, res) {
+export const create = (req, res) => {
   res.jsend.success({ hello: 'world' })
 }
 
-function getUser (req, res) {
+export const getUser = (req, res) => {
   res.jsend.success({ hello: 'world' })
-}
-
-export {
-  create,
-  getUser
 }

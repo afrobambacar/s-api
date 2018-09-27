@@ -1,6 +1,6 @@
 import Email from './model'
 
-function create (req, res) {
+export const create = (req, res) => {
   const { email } = req.body
   const options = {
     upsert: true,
@@ -18,8 +18,4 @@ function create (req, res) {
       res.jsend.success(raw.value);
     })
     .catch(err => res.jsend.fail(err))
-}
-
-export {
-  create
 }
