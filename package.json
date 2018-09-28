@@ -6,7 +6,8 @@
   "main": "app",
   "scripts": {
     "start": "gulp serve",
-    "test": "gulp test"
+    "test": "jest",
+    "coverage": "npm test -- --coverage",
   },
   "repository": {
     "type": "git",
@@ -69,6 +70,8 @@
     "gulp-plumber": "^1.2.0",
     "gulp-watch": "^5.0.1",
     "mocha": "^5.2.0",
+    "mongodb-memory-server": "^2.3.0",
+    "nock": "^10.0.0",
     "prettier": "^1.14.3",
     "run-sequence": "^2.2.1",
     "supertest": "^3.3.0",

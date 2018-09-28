@@ -1,17 +1,17 @@
 import path from 'path'
 import merge from 'lodash/merge'
+import dotenv from 'dotenv-safe'
 
 /* istanbul ignore next */
 const requireProcessEnv = (name) => {
   if (!process.env[name]) {
-    throw new Error('You must set the ' + name + ' environment variable')
+    throw new Error(`You must set the ${name} environment variable`)
   }
   return process.env[name]
 }
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== 'production') {
-  const dotenv = require('dotenv-safe')
   dotenv.load({
     path: path.join(__dirname, '../.env'),
     sample: path.join(__dirname, '../.env.example')
@@ -30,6 +30,7 @@ const config = {
     mongo: {
       uri: 'mongodb://host.docker.internal:27017/api-dev',
       options: {
+        useCreateIndex: true,
         useNewUrlParser: true,
         autoIndex: false, // Don't build indexes
         reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
@@ -54,13 +55,7 @@ const config = {
       s3Bucket: '',
     },
   },
-  test: {
-    env: 'test',
-    port: 9999,
-    mongo: {
-      uri: 'mongodb://127.0.0.1:27017/api-dev',
-    }
-  },
+  test: {},
   development: {},
   production: {}
 }
