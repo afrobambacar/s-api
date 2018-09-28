@@ -3,7 +3,7 @@ import { middleware as body } from 'bodymen'
 import { master } from '../../services/passport'
 import { create, show, update } from './controller'
 import { schema } from '../user'
-export PasswordReset, { schema } from './model'
+export { default as PasswordReset, schema } from './model'
 
 const router = new Router()
 const { email, password } = schema.tree
