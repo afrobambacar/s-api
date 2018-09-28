@@ -3,8 +3,8 @@ import { Schema } from 'bodymen'
 import { BasicStrategy } from 'passport-http'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
-import { jwtSecret, masterKey } from '../../config'
-import User, { schema } from '../../api/user/model'
+import { jwtSecret, masterKey } from 'config'
+import User, { schema } from 'api/user/model'
 
 export const password = () => (req, res, next) =>
   passport.authenticate('password', { session: false }, (err, user, info) => {

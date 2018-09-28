@@ -8,6 +8,8 @@ services:
       - ../../app:/home/app/api/app
       - ../../package.json:/home/app/api/package.json
       - ../../gulpfile.js:/home/app/api/gulpfile.js
+      - ../../.env:/home/app/api/.env
+      - ../../.env.example:/home/app/api/.env.example
       - ../../.babelrc:/home/app/api/.babelrc
       - ../../.eslintrc:/home/app/api/.eslintrc
       - ../../.eslintignore:/home/app/api/.eslintignore
